@@ -6,7 +6,7 @@
 #define M 1000000
 #define NUM_BLOCKS 64
 
-#define BLOCK_SIZE 12 * K
+#define BLOCK_SIZE 128 * K
 
 int main(int argc, char **argv)
 {
