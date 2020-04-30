@@ -1,0 +1,7 @@
+Compiled and run on my local machine using:
+
+Compile:
+mpicc parallelio.c -o parallelio
+
+Run:
+mpirun -np <#ranks> ./parallelio <args>
