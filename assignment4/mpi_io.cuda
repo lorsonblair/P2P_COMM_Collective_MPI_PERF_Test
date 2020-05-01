@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<stdbool.h>
+#include<assert.h>
+
+#include <cuda.h>
+#include <cuda_runtime.h>
+
+
+long long *block_data = NULL;
+size_t block_dataLength = 0;
+
+// Initialize 1
+static inline void block_initAllOnes(size_t block_size)
+{
+	int i;
+
+	cudaMallocManaged( &block_data, (block_dataLength * sizeof(long long)) );
+
+	// set all rows of world to true
+	for( i = 0; i < block_dataLength; i++) {
+	    block_data[i] = 1;
+	}
+
+	cudaMallocManaged( &block_data, (block_dataLength * sizeof(long long)) );
+}
+
+
+// Export the Wolrd into files.
+void gol_printWorld(int myrank)
+{
+	char file[64];
+	sprintf(file, "rank%d.txt", myrank);
+	FILE *output = fopen(file, "wb");
+
+	int i, j;
+
+	for( i = 0; i < block_dataLength; i++) {
+		fprintf(output, "%u ", (unsigned int)block_data[i]);
+	}
+
+	fprintf(output, "\n\n");
+	fflush(output);
+	fclose(output);
+}
+
+
+__global__ void parallel_io_kernel(const unsigned char* block_data,
+    unsigned int block_dataLength) {
+
+
+}
+
+
+bool parallel_io_kernelLaunch(long long** block_data,
+    size_t block_dataLength,
+    ushort threadsCount) {
+
+        size_t reqBlocksCount = block_dataLength / threadsCount;
+        size_t blocksCountMax = 65535;
+
+        if (reqBlocksCount > blocksCountMax) {
+            reqBlocksCount = blocksCountMax;
+        }
+
+        parallel_io_kernel <<< blocksCount, threadsCount >>> (*block_data, block_dataLength);
+        cudaDeviceSynchronize();
+    }
+
+
+// The function to free up the memory
+void cuda_free(unsigned char *arg) {
+	cudaFree(arg);
+}
