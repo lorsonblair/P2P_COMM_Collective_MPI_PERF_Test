@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include "mpi.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <mpi.h>
 
 #define K 1000
 #define M 1000000
