@@ -1,12 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <mpi.h>
-#include <unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include "mpi.h"
+#include<unistd.h>
 
 
-#define NUM_BLOCKS 64
-#define FREQUENCY 512000000
-
+//#define num_blocks 64
+//#define FREQUENCY 512000000
 /****************************************************************/
 // FOR POWER9 SYSTEMS ONLY - x86 SYSTEMS HAVE A DIFFERENT CODE  //
 /****************************************************************/
@@ -26,28 +25,33 @@ static __inline__ ticks getticks(void)
     return (((unsigned long long)tbu0) << 32) | tbl;
 }
 
+/* Main function */
 int main(int argc, char **argv)
 {
-    int myrank, nprocs, block_size;
-    
+    //long long FREQUENCY = 512000000;
+
+    long long FREQUENCY = 512000000;
+    long long num_blocks = 64;
+    int myrank, nprocs;
+    long long block_size, count;
+    long long offset;
     char file_name[64];
 
     unsigned long long start = 0;
     unsigned long long finish = 0;
     unsigned long long result = 0;
     float time = 0.0;
-    
+
     if (argc != 2)
     {
       printf("Block size required\n");
       return (EXIT_FAILURE);
     }
 
-    block_size = atoi(argv[1]);
-    char *buffer = malloc(block_size);
+    block_size = atoll(argv[1]);    // block size from the user
+    long long *buffer = malloc(block_size * (sizeof(long long)));    // dummy block
 
     MPI_File file;
-    MPI_Offset offset;
     MPI_Status status;
 
     // initialize MPI
@@ -56,9 +60,15 @@ int main(int argc, char **argv)
     MPI_Comm_size(MPI_COMM_WORLD, &nprocs);     // number of ranks (processes)
 
     // fill the buffer with all 1s
-    for (int i = 0; i < block_size; i++) buffer[i] = '1';
+    for (long long int i = 0; i < block_size; i++)
+    {
+        buffer[i] = '1';
+    }
 
-    sprintf(file_name, "%d_ranks_%d_blksz", nprocs, block_size);
+    sprintf(file_name, "%d_ranks_%lld_blksz", nprocs, block_size);
+
+    // calculate the count to use in write_at and read_at functions
+    count = block_size / sizeof(long long);
 
     if (myrank == 0)
     {
@@ -68,12 +78,13 @@ int main(int argc, char **argv)
         start = getticks();
     }
 
+    // open file and perform num_blocks writes
     MPI_File_open(MPI_COMM_WORLD, file_name, MPI_MODE_CREATE | MPI_MODE_WRONLY, MPI_INFO_NULL, &file);
-    // perform NUM_BLOCKS writes
-    for (int i = 0; i < NUM_BLOCKS; i++)
+    for (int i = 0; i < num_blocks; i++)
+
     {
         offset = (myrank * block_size) + (i * nprocs * block_size);
-        MPI_File_write_at(file, offset, buffer, block_size, MPI_CHAR, &status);
+        MPI_File_write_at(file, offset, buffer, count, MPI_CHAR, &status);
     }
     MPI_Barrier(MPI_COMM_WORLD);
     MPI_File_close(&file);
@@ -98,12 +109,13 @@ int main(int argc, char **argv)
         start = getticks();
     }
 
-    // perform NUM_BLOCKS reads
+    // open file and perform num_blocks reads
     MPI_File_open(MPI_COMM_WORLD, file_name, MPI_MODE_RDONLY, MPI_INFO_NULL, &file);
-    for (int i = 0; i < NUM_BLOCKS; i++)
+    for (int i = 0; i < num_blocks; i++)
     {
         offset = (myrank * block_size) + (i * nprocs * block_size);
-        MPI_File_read_at(file, offset, buffer, block_size, MPI_CHAR, &status);
+
+        MPI_File_read_at(file, offset, buffer, count, MPI_CHAR, &status);
     }
     MPI_Barrier(MPI_COMM_WORLD);
     MPI_File_close(&file);
