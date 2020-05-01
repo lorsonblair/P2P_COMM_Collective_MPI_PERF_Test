@@ -1,0 +1,113 @@
+--------------------------------------
+slurm-143777.out:
+
+***********************************
+Parallel IO Tests for 2_ranks_4000000_blksz
+Write Test
+Start Ticks: 75259878884940
+Finish Ticks: 75260244597959
+Result: 365713019
+Write Time (s): 0.714
+
+Read Test
+Start Ticks: 75260244618854
+Finish Ticks: 75260246559192
+Result: 1940338
+Read Time (s): 0.004
+***********************************
++ rm /tmp/hosts.143777
+
+--------------------------------------
+slurm-143778.out:
+
+***********************************
+Parallel IO Tests for 4_ranks_4000000_blksz
+Write Test
+Start Ticks: 34201738253109
+Finish Ticks: 34202634864131
+Result: 896611022
+Write Time (s): 1.751
+
+Read Test
+Start Ticks: 34202634880325
+Finish Ticks: 34202760820126
+Result: 125939801
+Read Time (s): 0.246
+***********************************
++ rm /tmp/hosts.143778
+
+--------------------------------------
+slurm-143779.out:
+
+++ _ModuleTable_Sz_=3
+++ export _ModuleTable_Sz_
+++ : -s sh
++ eval
++ module load spectrum-mpi
+++ /usr/share/lmod/lmod/libexec/lmod bash load spectrum-mpi
+  1) cuda/10.1
+
++ eval
+Start Ticks: 75265997977025
+Finish Ticks: 75266002878120
+Result: 4901095
+Read Time (s): 0.010
+***********************************
++ rm /tmp/hosts.143779
+
+--------------------------------------
+slurm-143780.out:
+
+***********************************
+Parallel IO Tests for 16_ranks_4000000_blksz
+Write Test
+Start Ticks: 34206130288009
+Finish Ticks: 34210272625268
+Result: 4142337259
+Write Time (s): 8.091
+
+Read Test
+Start Ticks: 34210272646664
+Finish Ticks: 34210287815097
+Result: 15168433
+Read Time (s): 0.030
+***********************************
++ rm /tmp/hosts.143780
+
+--------------------------------------
+slurm-143781.out:
+
+***********************************
+Parallel IO Tests for 32_ranks_4000000_blksz
+Write Test
+Start Ticks: 75283692418847
+Finish Ticks: 75291951792833
+Result: 8259373986
+Write Time (s): 16.132
+
+Read Test
+Start Ticks: 75291951803787
+Finish Ticks: 75291967202932
+Result: 15399145
+Read Time (s): 0.030
+***********************************
++ rm /tmp/hosts.143781
+
+--------------------------------------
+slurm-143782.out:
+
+***********************************
+Parallel IO Tests for 64_ranks_4000000_blksz
+Write Test
+Start Ticks: 75299434689427
+Finish Ticks: 75309542911505
+Result: 10108222078
+Write Time (s): 19.743
+
+Read Test
+Start Ticks: 75309542924447
+Finish Ticks: 75309568507125
+Result: 25582678
+Read Time (s): 0.050
+***********************************
++ rm /tmp/hosts.143782
