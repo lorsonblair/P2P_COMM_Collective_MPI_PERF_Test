@@ -1,0 +1,113 @@
+--------------------------------------
+slurm-143547.out:
+
+***********************************
+Parallel IO Tests for 2_ranks_1024000_blksz
+Write Test
+Start Ticks: 29928628070578
+Finish Ticks: 29928633905234
+Result: 5834656
+Write Time (s): 0.011
+
+Read Test
+Start Ticks: 29928633924004
+Finish Ticks: 29928635252908
+Result: 1328904
+Read Time (s): 0.003
+***********************************
++ rm /tmp/hosts.143547
+
+--------------------------------------
+slurm-143548.out:
+
+***********************************
+Parallel IO Tests for 4_ranks_1024000_blksz
+Write Test
+Start Ticks: 28762117067520
+Finish Ticks: 28764520217372
+Result: 2403149852
+Write Time (s): 4.694
+
+Read Test
+Start Ticks: 28764520232929
+Finish Ticks: 28764522265859
+Result: 2032930
+Read Time (s): 0.004
+***********************************
++ rm /tmp/hosts.143548
+
+--------------------------------------
+slurm-143549.out:
+
+***********************************
+Parallel IO Tests for 8_ranks_1024000_blksz
+Write Test
+Start Ticks: 65860478729738
+Finish Ticks: 65866697300971
+Result: 6218571233
+Write Time (s): 12.146
+
+Read Test
+Start Ticks: 65866697324254
+Finish Ticks: 65866700701985
+Result: 3377731
+Read Time (s): 0.007
+***********************************
++ rm /tmp/hosts.143549
+
+--------------------------------------
+slurm-143550.out:
+
+***********************************
+Parallel IO Tests for 16_ranks_1024000_blksz
+Write Test
+Start Ticks: 28762225811084
+Finish Ticks: 28771425721407
+Result: 9199910323
+Write Time (s): 17.969
+
+Read Test
+Start Ticks: 28771425762894
+Finish Ticks: 28771606597037
+Result: 180834143
+Read Time (s): 0.353
+***********************************
++ rm /tmp/hosts.143550
+
+--------------------------------------
+slurm-143551.out:
+
+***********************************
+Parallel IO Tests for 32_ranks_1024000_blksz
+Write Test
+Start Ticks: 65860886076675
+Finish Ticks: 65876944283684
+Result: 16058207009
+Write Time (s): 31.364
+
+Read Test
+Start Ticks: 65876944303741
+Finish Ticks: 65877095602394
+Result: 151298653
+Read Time (s): 0.296
+***********************************
++ rm /tmp/hosts.143551
+
+--------------------------------------
+slurm-143552.out:
+
+***********************************
+Parallel IO Tests for 64_ranks_1024000_blksz
+Write Test
+Start Ticks: 29929742106846
+Finish Ticks: 29945418449120
+Result: 15676342274
+Write Time (s): 30.618
+
+Read Test
+Start Ticks: 29945418461927
+Finish Ticks: 29945509549687
+Result: 91087760
+Read Time (s): 0.178
+***********************************
++ rm /tmp/hosts.143552
