@@ -21,5 +21,5 @@ module load gcc/7.4.0/1
 module load spectrum-mpi
 module load cuda
 
-mpirun -hostfile /tmp/hosts.$SLURM_JOB_ID -np $SLURM_NPROCS /gpfs/u/home/PCP9/PCP9shnt/assignment4/parallelio 16384000
+mpirun -hostfile /tmp/hosts.$SLURM_JOB_ID -np $SLURM_NPROCS /gpfs/u/home/PCP9/PCP9shnt/assignment4/parallelio 128000
 rm /tmp/hosts.$SLURM_JOB_ID

@@ -4,8 +4,6 @@
 #include<unistd.h>
 
 
-//#define num_blocks 64
-//#define FREQUENCY 512000000
 /****************************************************************/
 // FOR POWER9 SYSTEMS ONLY - x86 SYSTEMS HAVE A DIFFERENT CODE  //
 /****************************************************************/
@@ -84,7 +82,7 @@ int main(int argc, char **argv)
 
     {
         offset = (myrank * block_size) + (i * nprocs * block_size);
-        MPI_File_write_at(file, offset, buffer, count, MPI_CHAR, &status);
+        MPI_File_write_at(file, offset, buffer, count, MPI_LONG_LONG, &status);
     }
     MPI_Barrier(MPI_COMM_WORLD);
     MPI_File_close(&file);

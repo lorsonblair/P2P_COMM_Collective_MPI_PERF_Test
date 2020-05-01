@@ -1,113 +1,113 @@
 --------------------------------------
-slurm-143547.out:
+slurm-143656.out:
 
 ***********************************
-Parallel IO Tests for 2_ranks_1024000_blksz
+Parallel IO Tests for 2_ranks_1000000_blksz
 Write Test
-Start Ticks: 29928628070578
-Finish Ticks: 29928633905234
-Result: 5834656
-Write Time (s): 0.011
+Start Ticks: 31535741707211
+Finish Ticks: 31535747871584
+Result: 6164373
+Write Time (s): 0.012
 
 Read Test
-Start Ticks: 29928633924004
-Finish Ticks: 29928635252908
-Result: 1328904
-Read Time (s): 0.003
+Start Ticks: 31535747888754
+Finish Ticks: 31535839937580
+Result: 92048826
+Read Time (s): 0.180
 ***********************************
-+ rm /tmp/hosts.143547
++ rm /tmp/hosts.143656
 
 --------------------------------------
-slurm-143548.out:
+slurm-143658.out:
 
 ***********************************
-Parallel IO Tests for 4_ranks_1024000_blksz
+Parallel IO Tests for 4_ranks_1000000_blksz
 Write Test
-Start Ticks: 28762117067520
-Finish Ticks: 28764520217372
-Result: 2403149852
-Write Time (s): 4.694
+Start Ticks: 31544627948394
+Finish Ticks: 31544947219339
+Result: 319270945
+Write Time (s): 0.624
 
 Read Test
-Start Ticks: 28764520232929
-Finish Ticks: 28764522265859
-Result: 2032930
-Read Time (s): 0.004
+Start Ticks: 31544947234592
+Finish Ticks: 31545291546641
+Result: 344312049
+Read Time (s): 0.672
 ***********************************
-+ rm /tmp/hosts.143548
++ rm /tmp/hosts.143658
 
 --------------------------------------
-slurm-143549.out:
+slurm-143659.out:
 
 ***********************************
-Parallel IO Tests for 8_ranks_1024000_blksz
+Parallel IO Tests for 8_ranks_1000000_blksz
 Write Test
-Start Ticks: 65860478729738
-Finish Ticks: 65866697300971
-Result: 6218571233
-Write Time (s): 12.146
+Start Ticks: 31554870242350
+Finish Ticks: 31557182400413
+Result: 2312158063
+Write Time (s): 4.516
 
 Read Test
-Start Ticks: 65866697324254
-Finish Ticks: 65866700701985
-Result: 3377731
-Read Time (s): 0.007
+Start Ticks: 31557182412638
+Finish Ticks: 31557188626535
+Result: 6213897
+Read Time (s): 0.012
 ***********************************
-+ rm /tmp/hosts.143549
++ rm /tmp/hosts.143659
 
 --------------------------------------
-slurm-143550.out:
+slurm-143660.out:
 
 ***********************************
-Parallel IO Tests for 16_ranks_1024000_blksz
+Parallel IO Tests for 16_ranks_1000000_blksz
 Write Test
-Start Ticks: 28762225811084
-Finish Ticks: 28771425721407
-Result: 9199910323
-Write Time (s): 17.969
+Start Ticks: 31563672492643
+Finish Ticks: 31567875407281
+Result: 4202914638
+Write Time (s): 8.209
 
 Read Test
-Start Ticks: 28771425762894
-Finish Ticks: 28771606597037
-Result: 180834143
-Read Time (s): 0.353
+Start Ticks: 31567875420295
+Finish Ticks: 31567884772601
+Result: 9352306
+Read Time (s): 0.018
 ***********************************
-+ rm /tmp/hosts.143550
++ rm /tmp/hosts.143660
 
 --------------------------------------
-slurm-143551.out:
+slurm-143661.out:
 
 ***********************************
-Parallel IO Tests for 32_ranks_1024000_blksz
+Parallel IO Tests for 32_ranks_1000000_blksz
 Write Test
-Start Ticks: 65860886076675
-Finish Ticks: 65876944283684
-Result: 16058207009
-Write Time (s): 31.364
+Start Ticks: 31578107428874
+Finish Ticks: 31586419938342
+Result: 8312509468
+Write Time (s): 16.235
 
 Read Test
-Start Ticks: 65876944303741
-Finish Ticks: 65877095602394
-Result: 151298653
-Read Time (s): 0.296
+Start Ticks: 31586419957023
+Finish Ticks: 31586516452420
+Result: 96495397
+Read Time (s): 0.188
 ***********************************
-+ rm /tmp/hosts.143551
++ rm /tmp/hosts.143661
 
 --------------------------------------
-slurm-143552.out:
+slurm-143662.out:
 
 ***********************************
-Parallel IO Tests for 64_ranks_1024000_blksz
+Parallel IO Tests for 64_ranks_1000000_blksz
 Write Test
-Start Ticks: 29929742106846
-Finish Ticks: 29945418449120
-Result: 15676342274
-Write Time (s): 30.618
+Start Ticks: 31596082889795
+Finish Ticks: 31606293834875
+Result: 10210945080
+Write Time (s): 19.943
 
 Read Test
-Start Ticks: 29945418461927
-Finish Ticks: 29945509549687
-Result: 91087760
-Read Time (s): 0.178
+Start Ticks: 31606293853434
+Finish Ticks: 31606323611439
+Result: 29758005
+Read Time (s): 0.058
 ***********************************
-+ rm /tmp/hosts.143552
++ rm /tmp/hosts.143662
