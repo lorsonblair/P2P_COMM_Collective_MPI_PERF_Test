@@ -29,6 +29,10 @@ static __inline__ ticks getticks(void)
   return (((unsigned long long)tbu0) << 32) | tbl;
 }
 
+/* Definition and initialization of global (extern) variables */
+long long *buffer = NULL;
+long long block_size;
+
 /* Main function */
 int main(int argc, char **argv)
 {
