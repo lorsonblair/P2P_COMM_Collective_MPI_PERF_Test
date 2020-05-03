@@ -14,9 +14,7 @@ io-main: io-main.c
 		-L/usr/local/cuda-10.1/lib64/ -lcudadevrt -lcudart -lstdc++
 
 parallelio: parallelio.c
-	mpicc -g -c parallelio.c \
-		-o parallelio.o
-	mpicc -g parallelio.o \
+	mpicc -g parallelio.c \
 		-o parallelio-exe \
 		-L/usr/local/cuda-10.1/lib64/ -lcudadevrt -lcudart -lstdc++
 
