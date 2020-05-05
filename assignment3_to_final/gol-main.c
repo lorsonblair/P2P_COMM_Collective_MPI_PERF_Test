@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <mpi.h>
 
+#include "logp_mpi.h"  // logp_mpi tool
+
 /* Definition and initialization of global (extern) variables */
 unsigned char *g_data = NULL;
 unsigned char *g_resultData = NULL;
@@ -63,6 +65,42 @@ int main(int argc, char *argv[])
     iterations = atoi(argv[3]);
     threads = atoi(argv[4]);
     printFlag = atoi(argv[5]);
+
+
+    /* =========================================  */
+    /* logp_mpi parameters setting                */
+    /* =========================================  */
+    int err;
+    logp_params *logp;
+    int logp_g_zero ;
+    int logp_min_its, logp_max_its;
+    double logp_conf_int, logp_eps, logp_max_diff;
+    int logp_min_size, logp_max_size;
+    logp_sendmode logp_send_mode;
+    logp_recvmode logp_recv_mode;
+    logp_bufmode  logp_buf_mode;
+    int logp_opt;
+    int logp_diag;
+    char *logp_outfile;
+    char test_name[256];
+    /* Set defaults and process options.
+     * TODO: check sensibility of parameter values (non-negative etc.)
+     */
+    logp_g_zero    = 0;
+    logp_min_its   = LOGP_DEF_MIN_ITS;
+    logp_max_its   = LOGP_DEF_MAX_ITS;
+    logp_conf_int  = LOGP_DEF_CONF_INT;
+    logp_eps       = LOGP_DEF_EPS;
+    logp_max_diff  = LOGP_DEF_MAX_DIFF;
+    logp_min_size  = LOGP_DEF_MIN_SIZE;
+    logp_max_size  = LOGP_DEF_MAX_SIZE;
+    logp_send_mode = LOGP_MPI_SEND;
+    logp_recv_mode = LOGP_MPI_RECV;
+    logp_buf_mode  = LOGP_BUF_DYNAMIC;
+    logp_opt       = LOGP_OPT_NONE;
+    logp_diag      = LOGP_DIAG_DEFAULT;
+    logp_outfile    = NULL;
+    /* =========================================  */
 
     // Initialize MPI
     MPI_Init(&argc, &argv);
@@ -125,6 +163,24 @@ int main(int argc, char *argv[])
 	    printf("If output is turned on, the worlds for each rank are printed to their corressponding .txt files.\n\n");
         printf("###################################################################################################\n\n");     
     }
+
+    err = logp_measure(&logp, test_name,
+		       MPI_COMM_WORLD, 0, 1,
+		       logp_g_zero,
+		       logp_min_its, logp_max_its,
+		       logp_conf_int, logp_eps, logp_max_diff,
+		       logp_min_size, logp_max_size,
+		       LOGP_DEF_DIFF_SIZES,
+		       logp_send_mode, logp_recv_mode, logp_buf_mode,
+		       logp_opt, logp_diag);
+
+    if (err == MPI_SUCCESS && logp != NULL) {
+        if (logp_outfile != NULL) {
+	        logp_save(logp, logp_outfile);
+        }
+        logp_free(logp);
+    }
+
 
     // If print flag is set, print rank's world to file
     if (printFlag)
