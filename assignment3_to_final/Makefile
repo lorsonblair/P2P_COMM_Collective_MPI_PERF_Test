@@ -24,11 +24,8 @@ RANLIB		= echo
 ############################################################################
 # You should not need to change anything below this line
 ############################################################################
-
-
-LOGP_DIR    = logp_mpi/
-LOGP_SRC	= $(LOGP_DIR)logp_mpi.c $(LOGP_DIR)logp_stats.c
-LOGP_INC	= $(LOGP_DIR)logp_mpi.h $(LOGP_DIR)logp_stats.h
+LOGP_SRC	= logp_mpi.c logp_stats.c
+LOGP_INC	= logp_mpi.h logp_stats.h
 LOGP_OBJ	= $(LOGP_SRC:%.c=%.o)
 
 LOGP_LIB	= liblogp.a
@@ -39,18 +36,18 @@ LOGP_LIB	= liblogp.a
 all: $(LOGP_LIB) gol
 
 $(LOGP_LIB): $(LOGP_OBJ)
-	ar -cr $(LOGP_LIB) logp_mpi.o
+	ar -cr $(LOGP_LIB) $(LOGP_OBJ)
 	$(RANLIB) $(LOGP_LIB)
 
 .c.o: $(LOGP_INC)
 	$(MPICC) $(CFLAGS) -c $*.c
 
-gol: gol-main.c gol-with-cuda.cu
-		$(MPICC) -g gol-main.c $(LOGP_LIB) -c \
+gol: gol-main.c gol-with-cuda.cu $(LOGP_LIB) $(LOGP_INC)
+		$(MPICC) -g $(LOGP_LIB) $(LOGP_SRC)  gol-main.c -c \
 			-o gol-main.o
 		nvcc gol-with-cuda.cu -c \
 			-o gol-cuda.o
-		$(MPICC) -g gol-main.o gol-cuda.o \
+		$(MPICC) -g gol-main.o gol-cuda.o $(LOGP_LIB) \
 			-o gol-cuda-mpi-exe \
 			-L/usr/local/cuda-10.1/lib64/ -lcudadevrt -lcudart -lstdc++
 
