@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <mpi.h>
 
+#include "logp_mpi/logp_mpi.h"  // logp_mpi tool
+
 /* Definition and initialization of global (extern) variables */
 unsigned char *g_data = NULL;
 unsigned char *g_resultData = NULL;
